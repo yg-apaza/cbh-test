@@ -73,12 +73,14 @@ exports.deterministicPartitionKey = (event) => {
 - Clearly there are two different strategies to get a partition key:
   - Specific partition key method
   - Generated partition key method
-  We can determine which method to use at the beginning by verifying if the event.partitionKey exists or if only event exists.
+  We can determine which method to use at the beginning by verifying if the `event.partitionKey` exists or if only `event` exists.
 
 - Move the `string` type checking and length checking to the "Specific partition key method". If we are using the "Generated partition key method", we don't need to do these verifications.
 
-- Take advantage of the latest advances in Javascript like [Optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) to check if event.partitionKey exists. This will allow better readability by avoiding too many nested `if`s.
+- Take advantage of the latest advances in Javascript like [Optional chaining](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining) (supported from Node 14) to check if `event.partitionKey` exists. This will allow better readability by avoiding too many nested `if`s.
 
-- By default given a null event, we should return the `TRIVIAL_PARTITION_KEY`.
+- By default given a null `event`, we should return the `TRIVIAL_PARTITION_KEY`.
 
-- Add useful unit test cases for every method/strategy..
+- Add useful unit test cases for every method/strategy.
+
+- Add documentation for the functions to understand what the code is doing.
