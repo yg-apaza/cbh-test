@@ -70,10 +70,9 @@ exports.deterministicPartitionKey = (event) => {
 
 ### Improvements to the code
 
-- Clearly there are two different strategies to get a partition key:
+- Clearly there are two different strategies to get a partition key. We can determine which method to use at the beginning by verifying if the `event.partitionKey` exists or if only `event` exists:
   - Specific partition key method
   - Generated partition key method
-We can determine which method to use at the beginning by verifying if the `event.partitionKey` exists or if only `event` exists.
 
 - Move the `string` type checking and length checking to the "Specific partition key method". If we are using the "Generated partition key method", we don't need to do these verifications.
 
